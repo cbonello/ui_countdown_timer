@@ -1,6 +1,8 @@
 # ui_countdown_timer
 
-A new Flutter project.
+https://dribbble.com/shots/7149532-Countdown-timer-dailyui-014
+
+https://www.zedge.net/find/ringtones/Alarm
 
 ## Getting Started
 
