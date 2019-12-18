@@ -5,6 +5,28 @@ Ringtones from: https://www.zedge.net/find/ringtones/Alarm
 
 As of now, implementation is about 90% done.
 
+## Current Implementation Status
+
+App is responsive.
+
+### Nexus 5
+
+Main Screen | Timer Dialog
+--- | ---
+![Main Screen](/screenshots/main_nexus5.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_nexus5.png?raw=true "Timer Dialog")
+
+### Pixel 2
+
+Main Screen | Timer Dialog
+--- | ---
+![Main Screen](/screenshots/main_pixel2.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_pixel2.png?raw=true "Timer Dialog")
+
+### Pixel 3
+
+Main Screen | Timer Dialog
+--- | ---
+![Main Screen](/screenshots/main_pixel3.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_pixel3.png?raw=true "Timer Dialog")
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
