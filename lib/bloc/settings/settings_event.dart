@@ -13,5 +13,5 @@ class UpdateSettings extends SettingsEvent {
   final Settings settings;
 
   @override
-  String toString() => 'Setsettings { settings: "$settings" }';
+  String toString() => 'UpdateSettings { settings: "$settings" }';
 }

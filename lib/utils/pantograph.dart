@@ -32,13 +32,11 @@ class Pantograph extends InheritedWidget {
   }
 
   T platformValue<T>(T valueAndroid, T valueIOS) {
-    return defaultTargetPlatform == TargetPlatform.android
-        ? valueAndroid
-        : valueIOS;
+    return defaultTargetPlatform == TargetPlatform.android ? valueAndroid : valueIOS;
   }
 
   static Pantograph of(BuildContext context) {
-    final Pantograph p = context.inheritFromWidgetOfExactType(Pantograph);
+    final Pantograph p = context.dependOnInheritedWidgetOfExactType<Pantograph>();
     assert(p != null);
     return p;
   }

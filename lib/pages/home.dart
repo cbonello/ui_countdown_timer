@@ -45,8 +45,7 @@ class HomeWidget extends StatelessWidget {
             RoundButton(
               label: 'TIMER',
               elevation: Pantograph.of(context).platformValue(1.0, 0.0),
-              onPressed: () async =>
-                  await Navigator.of(context).pushNamed('/timer'),
+              onPressed: () async => await Navigator.of(context).pushNamed('/timer'),
             ),
             const Spacer(),
             RoundButton(
@@ -69,7 +68,7 @@ class HomeWidget extends StatelessWidget {
       await url_launcher.launch(url);
     } else {
       Scaffold.of(context).showSnackBar(
-        SnackBar(content: const Text('Cannot launch URL')),
+        const SnackBar(content: Text('Cannot launch URL')),
       );
     }
   }

@@ -18,6 +18,8 @@ class _BlocDelegate extends BlocDelegate {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   // Design only works in portrait mode.
   SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[
@@ -55,8 +57,8 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: 'BebasNeue',
           appBarTheme: const AppBarTheme(color: Color(0xFF50979D)),
-          buttonTheme: ButtonThemeData(
-            buttonColor: const Color(0xFF50979D),
+          buttonTheme: const ButtonThemeData(
+            buttonColor: Color(0xFF50979D),
           ),
           toggleableActiveColor: const Color(0xFF50979D),
         ),

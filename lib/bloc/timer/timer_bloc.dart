@@ -4,13 +4,17 @@ import 'package:pedantic/pedantic.dart';
 import 'package:bloc/bloc.dart';
 import 'package:ui_countdown_timer/bloc/timer/bloc.dart';
 
+const int INITIAL_DURATION = 10;
+
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   TimerBloc({@required Ticker ticker})
       : assert(ticker != null),
         _ticker = ticker;
 
   final Ticker _ticker;
-  final int _duration = 10;
+  int _duration = 10;
+
+  set duration(int d) => _duration = d;
 
   StreamSubscription<int> _tickerSubscription;
 

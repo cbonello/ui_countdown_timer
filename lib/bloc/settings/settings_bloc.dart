@@ -12,6 +12,7 @@ const Map<String, String> Ringtones = <String, String>{
 class SettingsBloc extends Bloc<SettingsEvent, Settings> {
   @override
   Settings get initialState => Settings(
+        duration: 10, // 10 seconds.
         ringtone: Ringtones.keys.elementAt(0),
         volume: 0.5,
         vibrate: true,

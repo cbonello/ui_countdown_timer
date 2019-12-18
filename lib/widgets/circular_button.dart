@@ -18,7 +18,7 @@ class CircularButton extends StatelessWidget {
     return RawMaterialButton(
       onPressed: onPressed,
       constraints: BoxConstraints.tightFor(height: size, width: size),
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       elevation: Pantograph.of(context).platformValue(1.0, 0.0),
       fillColor: const Color(0xFF9DCBCE),
       child: AnimatedBuilder(

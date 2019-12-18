@@ -14,9 +14,7 @@ class NumberPicker extends StatefulWidget {
         assert(maxValue != null && maxValue >= 0),
         assert(minValue < maxValue),
         assert(
-          initialValue != null &&
-              minValue <= initialValue &&
-              initialValue <= maxValue,
+          initialValue != null && minValue <= initialValue && initialValue <= maxValue,
         ),
         assert(onChanged != null),
         super(key: key);
@@ -39,8 +37,7 @@ class _NumberPickerState extends State<NumberPicker> {
   @override
   void initState() {
     scrollController = ScrollController(
-      initialScrollOffset:
-          (widget.initialValue - widget.minValue) * widget.height,
+      initialScrollOffset: (widget.initialValue - widget.minValue) * widget.height,
     );
     selectedValue = widget.initialValue;
     super.initState();
@@ -59,9 +56,8 @@ class _NumberPickerState extends State<NumberPicker> {
     return NotificationListener<UserScrollNotification>(
       onNotification: (UserScrollNotification notification) {
         if (notification.direction == ScrollDirection.idle) {
-          final int index = (notification.metrics.pixels / widget.height)
-              .round()
-              .clamp(0, count - 1);
+          final int index =
+              (notification.metrics.pixels / widget.height).round().clamp(0, count - 1);
           animateToIndex(index);
           final int value = widget.minValue + index;
           print('$index - $value');
@@ -82,9 +78,9 @@ class _NumberPickerState extends State<NumberPicker> {
           itemCount: count,
           itemBuilder: (BuildContext context, int index) {
             return Center(
-                          child: Text(
+              child: Text(
                 (widget.minValue + index).toString().padLeft(2, '0'),
-                style: const TextStyle(fontSize: 48.0),
+                style: const TextStyle(fontSize: 24.0),
               ),
             );
           },

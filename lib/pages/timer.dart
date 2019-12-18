@@ -8,10 +8,10 @@ import 'package:ui_countdown_timer/utils/pantograph.dart';
 import 'package:ui_countdown_timer/widgets/circular_button.dart';
 import 'package:ui_countdown_timer/widgets/clock_background.dart';
 import 'package:ui_countdown_timer/widgets/clock_face.dart';
-import 'package:ui_countdown_timer/widgets/dialog.dart';
 import 'package:ui_countdown_timer/widgets/round_button.dart';
 import 'package:ui_countdown_timer/widgets/slider.dart';
 import 'package:ui_countdown_timer/widgets/switch.dart';
+import 'package:ui_countdown_timer/widgets/timer_dialog.dart';
 import 'package:vibration/vibration.dart';
 
 class TimerPage extends StatelessWidget {
@@ -36,8 +36,7 @@ class TimerWidget extends StatefulWidget {
   _TimerWidgetState createState() => _TimerWidgetState();
 }
 
-class _TimerWidgetState extends State<TimerWidget>
-    with TickerProviderStateMixin {
+class _TimerWidgetState extends State<TimerWidget> with TickerProviderStateMixin {
   AnimationController timerAnimCtrl, timerCfgCtlr;
   Animation<double> timerAnim, timerCfgAnim;
   bool canVibrate = false;
@@ -47,21 +46,17 @@ class _TimerWidgetState extends State<TimerWidget>
   void initState() {
     timerAnimCtrl = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 20),
+      duration: const Duration(seconds: 20),
     );
-    timerAnim = Tween<double>(begin: 0.0, end: -2 * math.pi)
-        .animate(timerAnimCtrl)
-          ..addListener(() => setState(() {}));
+    timerAnim = Tween<double>(begin: 0.0, end: -2 * math.pi).animate(timerAnimCtrl)
+      ..addListener(() => setState(() {}));
     timerCfgCtlr = AnimationController(
       vsync: this,
-      duration: Duration(
-        milliseconds: 300,
-      ),
+      duration: const Duration(milliseconds: 300),
     );
-    timerCfgAnim =
-        Tween<double>(begin: 0.0, end: math.pi / 4.0).animate(timerCfgCtlr);
+    timerCfgAnim = Tween<double>(begin: 0.0, end: math.pi / 4.0).animate(timerCfgCtlr);
     initVibration().whenComplete(() => setState(() {}));
-    duration = 10;
+    duration = INITIAL_DURATION;
     super.initState();
   }
 
@@ -105,8 +100,7 @@ class _TimerWidgetState extends State<TimerWidget>
               Pantograph.of(context).scaledHeight(60) +
               Pantograph.of(context).scaledHeight(160) +
               Pantograph.of(context).scaledHeight(25),
-          left: MediaQuery.of(context).size.width / 2.0 -
-              (dialDiameter * 1.42) / 2.0,
+          left: MediaQuery.of(context).size.width / 2.0 - (dialDiameter * 1.42) / 2.0,
           width: dialDiameter * 1.42,
           height: dialDiameter * 1.42,
           child: AnimatedBuilder(
@@ -154,6 +148,8 @@ class _TimerWidgetState extends State<TimerWidget>
                             duration: duration,
                             onClose: (int seconds) {
                               overlayEntry.remove();
+                              BlocProvider.of<TimerBloc>(context).duration = seconds;
+                              setState(() => duration = seconds);
                             },
                           );
                         },
@@ -162,8 +158,8 @@ class _TimerWidgetState extends State<TimerWidget>
                     },
                   ),
                   SizedBox(
-                    height: Pantograph.of(context).scaledHeight(25.0) +
-                        dialDiameter * 0.15,
+                    height:
+                        Pantograph.of(context).scaledHeight(25.0) + dialDiameter * 0.15,
                   ),
                   SizedBox(height: dialDiameter),
                   Row(
@@ -259,8 +255,7 @@ class _TimerWidgetState extends State<TimerWidget>
                                   Vibration.vibrate();
                                   setState(
                                     () {
-                                      BlocProvider.of<SettingsBloc>(context)
-                                          .dispatch(
+                                      BlocProvider.of<SettingsBloc>(context).dispatch(
                                         UpdateSettings(
                                           Settings.fromVibrate(
                                             settings,
@@ -278,13 +273,13 @@ class _TimerWidgetState extends State<TimerWidget>
                   ),
                   const Spacer(),
                   BlocBuilder<TimerBloc, TimerState>(
-                    condition: (TimerState previousState,
-                            TimerState currentState) =>
+                    condition: (TimerState previousState, TimerState currentState) =>
                         currentState.runtimeType != previousState.runtimeType,
                     builder: (BuildContext context, TimerState state) {
                       return Actions(
                         state: state,
                         animationController: timerAnimCtrl,
+                        duration: duration,
                       );
                     },
                   ),
@@ -304,10 +299,12 @@ class Actions extends StatelessWidget {
     Key key,
     @required this.animationController,
     @required this.state,
+    @required this.duration,
   }) : super(key: key);
 
   final AnimationController animationController;
   final TimerState state;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -317,10 +314,8 @@ class Actions extends StatelessWidget {
         elevation: Pantograph.of(context).platformValue(1.0, 0.0),
         onPressed: () {
           final TimerBloc timerBloc = BlocProvider.of<TimerBloc>(context);
-          timerBloc.dispatch(Start(duration: 10));
-          animationController.duration = Duration(
-            seconds: 10,
-          );
+          timerBloc.dispatch(Start(duration: duration));
+          animationController.duration = Duration(seconds: duration);
           animationController.forward();
         },
       );

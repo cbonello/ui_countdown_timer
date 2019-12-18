@@ -15,14 +15,6 @@ class ClockFace extends StatelessWidget {
 
   final double angle, hOffset, dialDiameter, knobDiameter1, knobDiameter2;
 
-  // Offset _rotate(Offset center, Offset pt, double angle) {
-  //   final double xM = pt.dx - center.dx;
-  //   final double yM = pt.dy - center.dy;
-  //   final double x = xM * math.cos(angle) + yM * math.sin(angle) + center.dx;
-  //   final double y = -xM * math.sin(angle) + yM * math.cos(angle) + center.dy;
-  //   return Offset(x, y);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -50,14 +42,10 @@ class ClockFace extends StatelessWidget {
               alignment: Alignment.center,
               child: BlocBuilder<TimerBloc, TimerState>(
                 builder: (BuildContext context, TimerState state) {
-                  final String hoursStr = ((state.duration / 3600) % 3600)
-                      .floor()
-                      .toString()
-                      .padLeft(2, '0');
-                  final String minutesStr = ((state.duration / 60) % 60)
-                      .floor()
-                      .toString()
-                      .padLeft(2, '0');
+                  final String hoursStr =
+                      ((state.duration / 3600) % 3600).floor().toString().padLeft(2, '0');
+                  final String minutesStr =
+                      ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
                   final String secondsStr =
                       (state.duration % 60).floor().toString().padLeft(2, '0');
 
@@ -87,14 +75,6 @@ class _BackgroundPainter extends CustomPainter {
 
   final double angle, knobDiameter1;
 
-  // Offset _rotate(double ox, double oy, double mx, double my, double angle) {
-  //   final double xm = mx - ox;
-  //   final double ym = my - oy;
-  //   final double dx = xm * math.cos(angle) + ym * math.sin(angle) + ox;
-  //   final double dy = -xm * math.sin(angle) + ym * math.cos(angle) + oy;
-  //   return Offset(dx, dy);
-  // }
-
   num degToRad(num deg) => deg * (math.pi / 180.0);
 
   @override
@@ -121,8 +101,7 @@ class _BackgroundPainter extends CustomPainter {
       false,
       paintShadow,
     );
-    canvas.drawOval(
-        Rect.fromLTWH(0, 0, knobDiameter1, knobDiameter1), paintKnob2);
+    canvas.drawOval(Rect.fromLTWH(0, 0, knobDiameter1, knobDiameter1), paintKnob2);
     for (double i = 0.0; i < 5.0; i++) {
       canvas.drawArc(
         Rect.fromLTWH(0, i, knobDiameter1, knobDiameter1 - i),
@@ -141,13 +120,9 @@ class _BackgroundPainter extends CustomPainter {
     );
     final Offset x2 = Offset(
       knobDiameter1 / 2.0 +
-          (knobDiameter1 - 15.0) /
-              2.0 *
-              math.cos(angle - math.pi / 2.0 - degToRad(2.0)),
+          (knobDiameter1 - 15.0) / 2.0 * math.cos(angle - math.pi / 2.0 - degToRad(2.0)),
       knobDiameter1 / 2.0 +
-          (knobDiameter1 - 15.0) /
-              2.0 *
-              math.sin(angle - math.pi / 2.0 - degToRad(2.0)),
+          (knobDiameter1 - 15.0) / 2.0 * math.sin(angle - math.pi / 2.0 - degToRad(2.0)),
     );
     final Offset x3 = Offset(
       knobDiameter1 / 2.0 +
@@ -157,13 +132,9 @@ class _BackgroundPainter extends CustomPainter {
     );
     final Offset x4 = Offset(
       knobDiameter1 / 2.0 +
-          (knobDiameter1 - 15.0) /
-              2.0 *
-              math.cos(angle - math.pi / 2.0 + degToRad(2.0)),
+          (knobDiameter1 - 15.0) / 2.0 * math.cos(angle - math.pi / 2.0 + degToRad(2.0)),
       knobDiameter1 / 2.0 +
-          (knobDiameter1 - 15.0) /
-              2.0 *
-              math.sin(angle - math.pi / 2.0 + degToRad(2.0)),
+          (knobDiameter1 - 15.0) / 2.0 * math.sin(angle - math.pi / 2.0 + degToRad(2.0)),
     );
     final Offset x5 = Offset(
       knobDiameter1 / 2.0 +
