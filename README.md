@@ -11,23 +11,29 @@ As of now, implementation is about 90% done.
 
 App is responsive.
 
-### Nexus 5
+### Nexus 5 (4.95 in, 1080×1920 px)
 
 Main Screen | Timer Dialog
 --- | ---
 ![Main Screen](/screenshots/main_nexus5.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_nexus5.png?raw=true "Timer Dialog")
 
-### Pixel 2
+### Pixel 2 (5.74 in, 1080×1920 px)
 
 Main Screen | Timer Dialog
 --- | ---
 ![Main Screen](/screenshots/main_pixel2.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_pixel2.png?raw=true "Timer Dialog")
 
-### Pixel 3
+### Pixel 3 (5.5 in, 1080x2160 px)
 
 Main Screen | Timer Dialog
 --- | ---
 ![Main Screen](/screenshots/main_pixel3.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_pixel3.png?raw=true "Timer Dialog")
+
+### Nexus 9 (8.9 in, 2048×1536 px)
+
+Main Screen | Timer Dialog
+--- | ---
+![Main Screen](/screenshots/main_nexus9.png?raw=true "Main Screen") | ![Timer Dialog](/screenshots/dialog_nexus9.png?raw=true "Timer Dialog")
 
 ## Getting Started
 
