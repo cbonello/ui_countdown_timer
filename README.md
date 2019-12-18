@@ -1,6 +1,8 @@
 # ui_countdown_timer
 Based on following design: https://dribbble.com/shots/7149532-Countdown-timer-dailyui-014
 
+![Original Design](/screenshots/original_design.png?raw=true "Original Design")
+
 Ringtones from: https://www.zedge.net/find/ringtones/Alarm
 
 As of now, implementation is about 90% done.
