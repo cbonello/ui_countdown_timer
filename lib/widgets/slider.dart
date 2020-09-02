@@ -44,7 +44,7 @@ class LabeledSlider extends StatelessWidget {
                   enabledThumbRadius: Pantograph.of(context).scaledHeight(40.0),
                 ),
                 // overlayRadius must be less than or equal to enabledThumbRadius
-                // so that the track entirely fills the available space.
+                // to ensure the track entirely fills the available space.
                 overlayShape: RoundSliderOverlayShape(
                   overlayRadius: Pantograph.of(context).scaledHeight(2.0),
                 ),
@@ -92,6 +92,8 @@ class _RetroSliderThumbShape extends SliderComponentShape {
     SliderThemeData sliderTheme,
     TextDirection textDirection,
     double value,
+    double textScaleFactor,
+    Size sizeWithOverflow,
   }) {
     final Canvas canvas = context.canvas;
 
