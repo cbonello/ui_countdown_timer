@@ -3,16 +3,22 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class TimerEvent extends Equatable {
-  const TimerEvent([List<dynamic> props = const <dynamic>[]]) : super(props);
+  const TimerEvent();
+
+  @override
+  List<Object> get props => <Object>[];
 }
 
 class Start extends TimerEvent {
-  Start({@required this.duration}) : super(<dynamic>[duration]);
+  const Start({@required this.duration});
 
   final int duration;
 
   @override
   String toString() => 'Start { duration: $duration }';
+
+  @override
+  List<Object> get props => <Object>[duration];
 }
 
 class Pause extends TimerEvent {
@@ -31,10 +37,13 @@ class Reset extends TimerEvent {
 }
 
 class Tick extends TimerEvent {
-  Tick({@required this.duration}) : super(<dynamic>[duration]);
+  const Tick({@required this.duration});
 
   final int duration;
 
   @override
   String toString() => 'Tick { duration: $duration }';
+
+  @override
+  List<Object> get props => <Object>[duration];
 }

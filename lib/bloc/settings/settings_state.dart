@@ -2,14 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends Equatable {
-  Settings({
+  const Settings({
     @required this.duration,
     @required this.ringtone,
     @required this.volume,
     @required this.vibrate,
   })  : assert(ringtone != null),
-        assert(volume >= 0.0 && volume <= 100.0),
-        super(<dynamic>[ringtone, volume, vibrate]);
+        assert(volume >= 0.0 && volume <= 100.0);
 
   factory Settings.fromDuration(Settings s, int newDuration) {
     return Settings(
@@ -55,4 +54,7 @@ class Settings extends Equatable {
   @override
   String toString() =>
       'Settings { duration: $duration, ringtone: "$ringtone", volume: "$volume", vibrate: "$vibrate" }';
+
+  @override
+  List<Object> get props => <Object>[ringtone, volume, vibrate];
 }

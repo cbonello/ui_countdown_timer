@@ -2,16 +2,20 @@ import 'package:equatable/equatable.dart';
 import 'package:ui_countdown_timer/bloc/settings/settings_state.dart';
 
 abstract class SettingsEvent extends Equatable {
-  const SettingsEvent([List<dynamic> props = const <dynamic>[]]) : super(props);
+  const SettingsEvent();
+
+  @override
+  List<Object> get props => <Object>[];
 }
 
 class UpdateSettings extends SettingsEvent {
-  UpdateSettings(this.settings)
-      : assert(settings != null),
-        super(<dynamic>[settings]);
+  const UpdateSettings(this.settings) : assert(settings != null);
 
   final Settings settings;
 
   @override
   String toString() => 'UpdateSettings { settings: "$settings" }';
+
+  @override
+  List<Object> get props => <Object>[settings];
 }
